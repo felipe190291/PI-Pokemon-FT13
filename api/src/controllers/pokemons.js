@@ -67,47 +67,113 @@ async function getallpokemons(req, res, next) {
       }
     }
   } 
-  if(req.query.offset){
+  else if(req.query.offset){
     let limit = req.query.limit;
      let offset=req.query.offset;
-    const pokemons = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
-    );
-const response = pokemons.data.results;
-let count=pokemons.data
-count={
-  count:40,
-  next:"localhost:3001/pokemons?offset=10&limit=10",
-  previous:null
-}
-// let pagination=pokemons.data.next
-// let pagination1=pokemons.data.previous
 
-  try {
-    offset=offset+10
-    for (let i = 0; i < response.length; i++) {
+     const pokemons = await axios.get(
+       `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
+     );
+   const response = pokemons.data.results;
+   
+if(offset==="10"){
+  let count=pokemons.data
+  count={
+    next:`http://localhost:3001/pokemons?offset=20&limit=10`,
+    previous:`http://localhost:3001/pokemons`
+  }
+    try {
+     
+      for (let i = 0; i < response.length; i++) {
+        try {
+          let detail = (await axios.get(response[i].url)).data;
+          let poke = {
+            name: detail.name,
+            image: detail.sprites.front_default,
+            type: detail.types.map(e=>e.type.name),
+          };
+
+          fullPokemons = [...fullPokemons, poke];
+        } catch (error) {
+          return next(error);
+        }
+      }
+      let dataBase = await Pokemon.findAll({
+        attributes:["name","image","type"]
+      });
+      await res.json(fullPokemons.concat(dataBase).concat(count));
+    } catch (error) {
+      return next(error);
+    }
+} if(offset==="20"){
+  let count1=pokemons.data
+  count1={
+    
+    next:`http://localhost:3001/pokemons?offset=30&limit=10`,
+    previous:`http://localhost:3001/pokemons?offset=10&limit=10`
+  }
+
+    try {
+      offset=offset+10
+      for (let i = 0; i < response.length; i++) {
+        try {
+          let detail = (await axios.get(response[i].url)).data;
+          let poke = {
+            name: detail.name,
+            image: detail.sprites.front_default,
+            type: detail.types.map(e=>e.type.name),
+          };
+  
+          fullPokemons = [...fullPokemons, poke];
+        } catch (error) {
+          return next(error);
+        }
+      }
+      let dataBase = await Pokemon.findAll({
+        attributes:["name","image","type"]
+      });
+      await res.json(fullPokemons.concat(dataBase).concat(count1));
+    } catch (error) {
+      return next(error);
+    }
+}if(offset==="30"){
+  let count=pokemons.data
+    count={
+   
+      next:null,
+      previous:`http://localhost:3001/pokemons?offset=20&limit=10`
+    }
+    
+    
       try {
-        let detail = (await axios.get(response[i].url)).data;
-        let poke = {
-          name: detail.name,
-          image: detail.sprites.front_default,
-          type: detail.types.map(e=>e.type.name),
-        };
-
-        // if(offset===)
-      
-        fullPokemons = [...fullPokemons, poke];
+        offset=offset+10
+        for (let i = 0; i < response.length; i++) {
+          try {
+            let detail = (await axios.get(response[i].url)).data;
+            let poke = {
+              name: detail.name,
+              image: detail.sprites.front_default,
+              type: detail.types.map(e=>e.type.name),
+            };
+    
+            
+          
+            fullPokemons = [...fullPokemons, poke];
+          } catch (error) {
+            return next(error);
+          }
+        }
+        let dataBase = await Pokemon.findAll({
+          attributes:["name","image","type"]
+        });
+        await res.json(fullPokemons.concat(dataBase).concat(count));
       } catch (error) {
         return next(error);
       }
-    }
-    let dataBase = await Pokemon.findAll({
-      attributes:["name","image","type"]
-    });
-    await res.json(fullPokemons.concat(dataBase).concat(count));
-  } catch (error) {
-    return next(error);
-  }
+  
+}
+
+
   }
   
   else {
@@ -118,6 +184,12 @@ count={
      `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
    );
    const response = pokemons.data.results;
+   let count=pokemons.data
+count={
+  count:40,
+  next:`http://localhost:3001/pokemons?offset=${limit}&limit=10`,
+  previous:null
+}
 
     try {
       for (let i = 0; i < response.length; i++) {
@@ -136,7 +208,7 @@ count={
       let perro = await Pokemon.findAll({
         attributes:["name","image","type"]
       });
-      await res.json(fullPokemons.concat(perro));
+      await res.json(fullPokemons.concat(perro,count));
     } catch (error) {
       return next(error);
     }
