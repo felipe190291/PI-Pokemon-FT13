@@ -1,6 +1,9 @@
 require("dotenv").config();
+const { default: axios } = require("axios");
+
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
+const { API_TYPES } = require("./routes/constantes");
 const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
@@ -43,9 +46,26 @@ const { Pokemon, Type } = sequelize.models;
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 // console.log("<<<<<<<<<<<<<<<", sequelize.models);
-Pokemon.belongsToMany(Type, { through: "Pokemon_Type" });
-Type.belongsToMany(Pokemon, { through: "Pokemon_Type" });
+Pokemon.belongsToMany(Type, { through: "Pokemon_Type", timestamps: false });
+Type.belongsToMany(Pokemon, { through: "Pokemon_Type", timestamps: false });
 console.log("las relaciones creadas satisfactoriamente", sequelize.models);
+
+const insert = axios
+  .get(`${API_TYPES}`)
+  .then((response) => response.data.results)
+  .then((typeNames) =>
+    typeNames.filter(
+      (type) => type.name !== "unknown" && type.name !== "shadow"
+    )
+  )
+  .then((typeMapped) => {
+    for (let obj of typeMapped) {
+      Type.create({ name: obj.name });
+    }
+    return true;
+  })
+  .catch((err) => console.error(err));
+Promise.all([insert]).then(() => console.log("Types loaded."));
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
