@@ -37,7 +37,6 @@ function getallpokemons(req, res, next) {
       if (filter === "byApi") {
         pokeList = pokeList.filter((el) => Number.isInteger(Number(el.id)));
       }
-      //limite de pokemons mostrado en pantalla
 
       const limitedList = pokeList.slice(0, limit);
       return res.json(limitedList);
@@ -55,7 +54,9 @@ function getID(req, res, next) {
   if (isNumber) {
     return axios
       .get(`${API_HOME}/${id}`)
-      .then((response) => res.json(response.data))
+      .then((response) => response.data)
+
+      .then((iddetail) => res.json(iddetail))
       .catch(() => next({ status: 404, message: "404 - Pokemon not found." }));
   }
   if (isUUID) {

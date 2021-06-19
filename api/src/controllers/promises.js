@@ -8,7 +8,7 @@ const {
 
 function nameExists(name) {
   return axios
-    .get(`${SERVER_URL}:${SERVER_PORT}/pokemons?limit=500`)
+    .get(`${SERVER_URL}:${SERVER_PORT}/pokemons?limit=${LIMIT_OF_POKEMONS}`)
     .then((response) => response.data)
     .then((allNames) => allNames.find((el) => el.name === name))
     .catch((err) => console.error(err));

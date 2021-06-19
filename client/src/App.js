@@ -1,41 +1,23 @@
-import "./App.css";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import production from "./sun-moon-team-up.mp4";
+import React from "react";
+import { Route } from "react-router-dom";
+
+import Navbar from "./components/Navbars/Navbar";
+import Landing from "./components/Landing-Page/Initial";
+import Home from "./components/Home/Home";
+import PokemonDetails from "./components/Pokemon-Details/PokemonDetails";
+
+import AddPokemon from "./components/Add-Pokemon/AddPokemon";
+
 function App() {
-  const [pokemons, setpokemons] = useState([]);
-  useEffect(() => {
-    axios
-      .get("http://localhost:3001/pokemons")
-      .then((pokemons) => setpokemons(pokemons.data));
-  }, []);
-  let pokemonData = pokemons.map((pokemon) => {
-    return (
-      <div>
-        <h3>{pokemon.name}</h3>
-        <h5>
-          <em>{pokemon.type}</em>
-        </h5>
-        <p>
-          <img src={pokemon.image} alt="pokemons" />
-        </p>
-      </div>
-    );
-  });
   return (
-    <div className="App">
-      <div>
-        <video
-          id="video"
-          preload="auto"
-          loop="loop"
-          muted
-          autoplay="autoplay"
-          src={production}
-        ></video>
-      </div>
-      <h1>{pokemonData}</h1>
-    </div>
+    <React.Fragment>
+      <Route exact path="/" component={Landing} />
+      <Route exact path="/home" component={Navbar} />
+      <Route path="/pokemon" component={Navbar} />
+      <Route exact path="/home" component={Home} />
+      <Route exact path="/pokemon/:id" component={PokemonDetails} />
+      <Route path="/home/add" component={AddPokemon} />
+    </React.Fragment>
   );
 }
 

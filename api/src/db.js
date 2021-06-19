@@ -1,8 +1,8 @@
 require("dotenv").config();
-const { default: axios } = require("axios");
 
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
+const { default: axios } = require("axios");
 const { API_TYPES } = require("./routes/constantes");
 const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
@@ -66,7 +66,6 @@ const insert = axios
   })
   .catch((err) => console.error(err));
 Promise.all([insert]).then(() => console.log("Types loaded."));
-
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');

@@ -1,0 +1,206 @@
+.container {
+    align-items: center;
+    background-color: transparent;
+    border: 5px solid black;
+    border-radius: 10px;
+    display: grid;
+    grid-template-rows: 1fr 6fr 1fr 3fr;
+    grid-template-columns: 1fr;
+    font-size: 1.4rem;
+    height: 450px;
+    margin: 1rem;
+    text-align: center;
+    width: 300px;
+}
+
+.container:hover {
+transform: scale(1.1)
+}
+
+.sprite {
+    width: 50%;
+    height: auto;
+    justify-self: center;
+}
+.button1{
+     background-color: #f5f5f5; /* Green */
+    border:  2px solid black;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 25px
+}
+.button2{
+    background-color: #f5f5f5; /* Green */
+    border:  2px solid black;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+  
+    font-size: 16px;
+    margin: 10px 100px;
+    width: 100px;
+    border-radius: 25px 
+}
+
+.id {
+    color:white;
+    padding-top: .5rem;
+    align-self: center;
+}
+
+.name {
+    color:white;
+    text-transform: capitalize;
+    align-self: center;
+}
+
+.types {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: .5rem;
+    padding: .5rem;
+    text-transform: capitalize;
+}
+
+.types article {
+    margin: 0 1rem;
+}
+
+.types img {
+    height: auto;
+    width: 50px;
+}
+
+.typeSingle {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: .5rem;
+    padding: .5rem;
+    text-transform: capitalize;
+}
+
+.typeSingle img {
+    height: auto;
+    width: 50px;
+}
+
+
+
+.card {
+    background-image: url('../../../Images/ladrillosescena.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+@keyframes shake {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-5deg);
+
+    }
+
+    50% {
+        transform: rotate(0deg);
+    }
+
+    75% {
+        transform: rotate(5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@media (max-width:700px) {
+    .container {
+        align-items: center;
+        background-color: transparent;
+        border: 1px solid black;
+        border-radius: 15px;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: center;
+        font-size: 1.4rem;
+        height: 100px;
+        margin: 1rem;
+        padding: 0 5px;
+        text-align: center;
+        width: 90vw;
+    }
+
+    .container:hover {
+        animation: none;
+    }
+
+    .sprite {
+        height: 75px;
+        width: auto;
+        margin: 0 10px;
+    }
+
+    .id {
+        padding-top: .5rem;
+    }
+
+    .name {
+        text-transform: capitalize;
+        font-size: 18px;
+    }
+
+    .types {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        margin: 0;
+        padding: 0;
+        text-transform: capitalize;
+    }
+
+    .types article {
+        margin: 0 10px;
+    }
+
+    .types article h4 {
+        display: none;
+    }
+
+    .types img {
+        height: auto;
+        width: 50px;
+    }
+
+    .typeSingle {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 10px;
+        text-transform: capitalize;
+    }
+
+    .typeSingle h4 {
+        display: none;
+    }
+
+    .typeSingle img {
+        height: auto;
+        width: 50px;
+    }
+}
