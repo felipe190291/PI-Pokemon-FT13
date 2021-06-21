@@ -12,12 +12,20 @@ import styles from "./styles/SortButtons.module.css";
 function SortButtons({ listPokemons, history }) {
   const stats = useSelector((state) => state.pokemonStats);
 
-  const sortPkmns = (e, hook) => {
-    const name = e.target.name;
-    if (name === "byProps") {
-      listPokemons.sort(hook);
-    } else {
-      stats.sort(hook);
+  const handleFilter = (e) => {
+    const name = e.target.value;
+    console.log("name1", name);
+    if (name === "number") {
+      listPokemons.sort(useCompareId);
+    }
+    if (name === "nameAZ") {
+      listPokemons.sort(useCompareAsc);
+    }
+    if (name === "nameZA") {
+      listPokemons.sort(useCompareDes);
+    }
+    if (name === "byStatsAsc") {
+      stats.sort(useCompareAttackAsc);
       const sortingArray = stats.map((el) => el.id);
       listPokemons.sort(function (a, b) {
         const A = Number.isInteger(Number(a.id)) ? parseInt(a.id) : a.id;
@@ -30,47 +38,32 @@ function SortButtons({ listPokemons, history }) {
         return -1;
       });
     }
-
+    if (name === "byStatsDes") {
+      stats.sort(useCompareAttackDes);
+      const sortingArray = stats.map((el) => el.id);
+      listPokemons.sort(function (a, b) {
+        const A = Number.isInteger(Number(a.id)) ? parseInt(a.id) : a.id;
+        const B = Number.isInteger(Number(b.id)) ? parseInt(b.id) : b.id;
+        if (name === "byStatsAsc") {
+          if (sortingArray.indexOf(A) > sortingArray.indexOf(B)) return 1;
+          return -1;
+        }
+        if (sortingArray.indexOf(A) < sortingArray.indexOf(B)) return 1;
+        return -1;
+      });
+    }
     return history.push("/home");
   };
-
   return (
     <aside className={styles.buttonContainer}>
-      <button
-        // className={styles.putton}
-        name="byProps"
-        onClick={(e) => sortPkmns(e, useCompareId)}
-      >
-        Number
-      </button>
-      <button
-        // className={styles.putton}
-        name="byProps"
-        onClick={(e) => sortPkmns(e, useCompareAsc)}
-      >
-        Name <strong>↑</strong>
-      </button>
-      <button
-        // className={styles.putton}
-        name="byProps"
-        onClick={(e) => sortPkmns(e, useCompareDes)}
-      >
-        Name <strong>↓</strong>
-      </button>
-      <button
-        // className={styles.putton}
-        name="byStatsAsc"
-        onClick={(e) => sortPkmns(e, useCompareAttackAsc)}
-      >
-        Attack <strong>↑</strong>
-      </button>
-      <button
-        // className={styles.putton}
-        name="byStatsDes"
-        onClick={(e) => sortPkmns(e, useCompareAttackDes)}
-      >
-        Attack <strong>↓</strong>
-      </button>
+      <select onChange={handleFilter} className={styles.byorder}>
+        <option value="-1">Select order</option>
+        <option value="number">Number</option>
+        <option value="nameAZ">A-Z</option>
+        <option value="nameZA">Z-A</option>
+        <option value="byStatsAsc">Attack ↑</option>
+        <option value="byStatsDes">Attack ↓</option>
+      </select>
     </aside>
   );
 }

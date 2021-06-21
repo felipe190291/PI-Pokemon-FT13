@@ -8,11 +8,10 @@ function getallpokemons(req, res, next) {
   const { name, limit = 12, filter = null } = req.query;
   const pokeApiProps = promisifiedGetApi();
   const pokeMine = Pokemon.findAll({ include: Type });
-
   Promise.all([pokeApiProps, pokeMine])
     .then((response) => {
       let [pokeApiRes, pokeMineRes] = response;
-      // console.log("api", pokeApiRes.concat(pokeMineRes));
+      console.log("apifirst", pokeApiRes.concat(pokeMineRes));
       return pokeApiRes.concat(pokeMineRes);
     })
     .then((pokeList) => {
@@ -28,14 +27,6 @@ function getallpokemons(req, res, next) {
               status: 404,
               message: "That pokemon does not exists.",
             });
-      }
-
-      if (filter === "byUsers") {
-        pokeList = pokeList.filter((el) => !Number.isInteger(Number(el.id)));
-      }
-
-      if (filter === "byApi") {
-        pokeList = pokeList.filter((el) => Number.isInteger(Number(el.id)));
       }
 
       const limitedList = pokeList.slice(0, limit);
@@ -89,11 +80,8 @@ async function addpokemon(req, res, next) {
       image,
     });
     newPokemon.setTypes(types);
-    console.log(newPokemon);
-    return res.redirect(
-      201,
-      `http://localhost:3000/pokemon/${newPokemon.dataValues.id}`
-    );
+    console.log("newpoke", newPokemon);
+    return res.json(newPokemon);
   } catch (err) {
     console.error(err);
     next(err);

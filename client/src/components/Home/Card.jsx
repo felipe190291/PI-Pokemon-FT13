@@ -3,21 +3,17 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { setPkmnsStats } from "../../actions/set/set.js";
-
-import Spinner from "../Spinner/Spinner";
+import { SERVER_API } from "../../actions/constantes";
 import styles from "./styles/Card.module.css";
-
-const SERVER_API = "http://localhost:3001/pokemons/";
+import fondo from "../../Images/Mountains, Desert, Camels, Asia.mp4";
 
 function Card({ name, pokeId }) {
   const dispatch = useDispatch();
   const [type, setType] = useState([]);
   const [image, setSprite] = useState("");
-  const [loading, setLoading] = useState(false);
   let idCreated = null;
   useEffect(() => {
     const getImgAndTypes = async () => {
-      setLoading(true);
       let res = null;
       if (Number.isInteger(Number(pokeId))) {
         res = await axios.get(`${SERVER_API}${pokeId}`);
@@ -55,20 +51,13 @@ function Card({ name, pokeId }) {
         setSprite(res.data.image);
         setType(res.data.types.map((el) => el.name));
       }
-
-      setLoading(false);
     };
     getImgAndTypes();
-  }, [pokeId]);
-
-  if (loading) return <Spinner />;
-
-  if (!Number.isInteger(Number(pokeId))) {
-    idCreated = `${pokeId.substring(0, 4)}-created`;
-  }
+  }, [pokeId]); //si no la imagen se desubica del poke inidicado
+  //lo enfoca en cada card
 
   return (
-    <div className={`${styles.container} ${styles.card}`}>
+    <div className={`${styles.container} ${styles[type[0]]}`}>
       <h3 className={styles.id}>
         {idCreated ? `#${idCreated}` : `#${pokeId}`}
       </h3>

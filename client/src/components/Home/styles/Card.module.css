@@ -96,8 +96,65 @@ transform: scale(1.1)
 
 
 
-.card {
-    background-image: url('../../../Images/ladrillosescena.jpg');
+
+.water {
+    
+    background-image: url('../../../Images/c4dd4bf4cab97d1d4b81b33153cc44ca.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.fighting,.flying{
+ background-image: url('../../../Images/air.gif');
+    background-repeat: no-repeat;
+    background-size: cover;   
+}
+.fire{
+    background-image: url('../../../Images/fire.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.grass{
+    background-image: url('../../../Images/grass.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.ice{
+    background-image: url('../../../Images/ice.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.poison{
+    background-image: url('../../../Images/poi.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.dark{
+    background-image: url('../../../Images/poison.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.ground{
+    background-image: url('../../../Images/rock.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.normal{
+    background-image: url('../../../Images/piedras cascada.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.bug{
+    background-image: url('../../../Images/bug.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.fairy{
+    background-image: url('../../../Images/fairy.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.electric{
+    background-image: url('../../../Images/electric.gif');
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -125,6 +182,7 @@ transform: scale(1.1)
         transform: rotate(0deg);
     }
 }
+
 
 @media (max-width:700px) {
     .container {

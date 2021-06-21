@@ -13,7 +13,7 @@ function AddPokemon({ history }) {
   const allTypes = useSelector((state) => state.types);
   // const dispatch = useDispatch();
   const [input, setInput] = useState({
-    name: "",
+    name: " ",
     attack: null,
     defense: null,
     speed: null,
@@ -70,6 +70,7 @@ function AddPokemon({ history }) {
 
   const handleChecked = (e) => {
     const checked = e.target.checked;
+
     console.log("checked", checked);
     const value = e.target.value;
     console.log("value", value);
@@ -80,12 +81,12 @@ function AddPokemon({ history }) {
       setType(type.filter((el) => el !== parseInt(value)));
     }
 
-    if (type.length >= 2) {
-      const newType = [...type];
-      document.getElementById(type[0]).checked = false;
-      newType.shift();
-      setType([...newType, parseInt(value)]);
-    }
+    // if (type.length >= 2) {
+    //   const newType = [...type];
+    //   document.getElementById(type[0]).checked = false;
+    //   newType.shift();
+    //   setType([...newType, parseInt(value)]);
+    // }
   };
 
   const handleSubmit = async (e) => {

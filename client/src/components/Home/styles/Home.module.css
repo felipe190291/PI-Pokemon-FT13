@@ -1,8 +1,19 @@
 body {
-    background: brown;
-    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    background: #F5F5F5;
   
 }
+.video{ 
+    position: fixed;
+min-width:100%;
+min-height: 100%;
+z-index: -1;
+top: 100%;
+left:100%;
+transform:translateX(-100%) translateY(-100%);
+
+
+}
+
 
 .container {
     display: flex;
@@ -36,7 +47,7 @@ position: absolute;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    width: 75%;
+    width: 100%;
 }
 
 .cardsContainer a {
@@ -76,7 +87,7 @@ position: absolute;
 .asideScroll{
     max-width: 250px;
     position: absolute;
-    left: 1050px;
+    left: 73%;
     top:1%;
 }
 .asideScroll select{
@@ -107,14 +118,42 @@ position: absolute;
 }
 
  .asideSort{
-position: relative;
-display:flex;
-flex-wrap: row;
+	max-width: 250px;
+	position: absolute;
+    left: 51%;
+top:0% ;
  } 
+.asideSort select{
+    appearance: none;
+    -webkit-appearance: none;
+	-moz-appearance: none;
+	display: inline-block;
+	width: 100%;
+	cursor: pointer;
+  	padding: 7px 10px;
+  	height: 42px;
+  	outline: 0; 
+  	border: 0;
+	border-radius: 0;
+	background: #f0f0f0;
+	font-size: 1em;
+	color:black;
+	font-family: 
+	'Quicksand', sans-serif;
+	border:2px solid rgba(0,0,0,0.2);
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.5s ease;
+}
+ 
+.asideSort select:hover{
+	background: white;
+}
+
  .asideFilter{
 	max-width: 250px;
 	position: absolute;
-    left: 60%;
+    left: 62%;
 top:0% ;
 }
  

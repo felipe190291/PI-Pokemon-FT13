@@ -8,7 +8,6 @@ function getAllPokemons() {
       .then((res) => res.data)
       .then((pokemons) => {
         dispatch({ type: GET_ALL_POKEMONS, payload: pokemons });
-        console.log({ type: GET_ALL_POKEMONS, payload: pokemons });
       });
 }
 

@@ -11,7 +11,7 @@ import SortButtons from "../Options-Buttons/SortButtons";
 import Card from "./Card";
 import Pagination from "../Options-Buttons/Pagination";
 import Filters from "../Options-Buttons/Filters";
-// import Counter from "../Options-Buttons/Counter";
+// import fondo from "../../Images/Mountains, Desert, Camels, Asia.mp4";
 import styles from "./styles/Home.module.css";
 
 function Home({ history }) {
@@ -28,7 +28,7 @@ function Home({ history }) {
     dispatch(getTypes());
   }, []);
 
-  if (allPokemons.length === 0) return <Spinner />;
+  if (allPokemons.length === 0) return <Spinner className={styles.Spinner} />;
 
   const indexOfLastPkmn = currentPage * perPage;
   const indexOfFirstPkmn = indexOfLastPkmn - perPage;
@@ -41,6 +41,14 @@ function Home({ history }) {
 
   return (
     <div className={styles.container} id="home">
+      {/* <video
+        className={styles.video}
+        src={fondo}
+        preload="auto"
+        loop="loop"
+        muted
+        autoPlay="autoplay"
+      ></video> */}
       <section className={styles.asideContainer}>
         <input
           id="check"
@@ -65,7 +73,7 @@ function Home({ history }) {
           <SortButtons listPokemons={allPokemons} history={history} />
         </article>
         <article className={styles.asideFilter}>
-          <Filters history={history} pokemons={allPokemons} />
+          <Filters />
         </article>
       </section>
       <section className={styles.cardsContainer}>

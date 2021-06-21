@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import poke from "../../Images/toppng.com-3d-pokeball-transparent-pokemon-ball-3d-304x304.png";
-// import { TiAdjustBrightness, TiWeatherNight } from "react-icons/ti";
 import styles from "./styles/Navbar.module.css";
 
 function Navbar({ history }) {
@@ -16,13 +15,22 @@ function Navbar({ history }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!input) return;
-    const searchPkmn = allPokemons.find(
-      (pkmn) => pkmn.name === input.toLowerCase()
-    );
-    setInput("");
-    searchPkmn
-      ? window.location.replace(`/pokemon/${searchPkmn.id}`)
-      : alert("That pokemon does not exist.");
+    console.log(Number.isInteger(Number(input)));
+    if (Number.isInteger(Number(input))) {
+      const searchPkmna = allPokemons.find((pkmn) => pkmn.id === input);
+      setInput("");
+      searchPkmna
+        ? window.location.replace(`/pokemon/${searchPkmna.id}`)
+        : alert("That pokemon does not exist.");
+    } else {
+      const searchPkmn = allPokemons.find(
+        (pkmn) => pkmn.name === input.toLowerCase()
+      );
+      setInput("");
+      searchPkmn
+        ? window.location.replace(`/pokemon/${searchPkmn.id}`)
+        : alert("That pokemon does not exist.");
+    }
   };
 
   return (

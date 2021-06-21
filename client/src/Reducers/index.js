@@ -4,8 +4,6 @@ import {
   GET_TYPES,
   GET_POKEMON_DETAILS,
   SET_PKMNS_STATS,
-  FILTER_BY_ORIGIN_API,
-  FILTER_BY_ORIGIN_USER,
   FILTER_BY_TYPE,
   LIMIT,
 } from "../actions/constantes";
@@ -31,12 +29,14 @@ function rootReducer(state = initialState, action) {
         pokemonsPerPage: action.payload,
       };
     case SET_PKMNS_STATS:
+      // console.log("stats", state.pokemonStats);
+      // console.log("action sttats", action.payload); //cada poke con typo electric,uno a uno
       const idExists = state.pokemonStats.find(
         (el) => el.id == action.payload.id
       );
       return {
         ...state,
-        pokemonStats: !idExists
+        pokemonStats: !idExists //si es uno creado que lo devuelva con todo, tiene en cuenta los creados
           ? [...state.pokemonStats, action.payload]
           : state.pokemonStats,
       };
@@ -46,30 +46,17 @@ function rootReducer(state = initialState, action) {
         types: action.payload,
       };
 
-    case FILTER_BY_ORIGIN_API:
-      return {
-        ...state,
-        allPokemons: action.payload,
-      };
-
-    case FILTER_BY_ORIGIN_USER:
-      return {
-        ...state,
-        allPokemons: action.payload,
-      };
-
     case FILTER_BY_TYPE:
-      console.log("typosarrreglo", state.pokemonStats);
-      console.log("typosarrreglo", action.payload);
+      // console.log("typosarrreglo", state.pokemonStats);
+      // console.log("typosarrreglo", action.payload);
       const typeAndId = state.pokemonStats.filter(
         (el) => el.types.includes(action.payload.toString()) && el.id
-      );
-      console.log("tipoyid", typeAndId);
+      ); //pimeropor aca porque tiene las propiedades types, y luego si lo filtro al otro
 
       return {
         ...state,
         allPokemons: state.allPokemons.filter((pkmn) => {
-          return typeAndId.find((el) => el.id == pkmn.id);
+          return typeAndId.find((el) => el.id == pkmn.id); //all llega como string, pokemonstats por number
         }),
       };
 

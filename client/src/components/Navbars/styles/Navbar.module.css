@@ -1,6 +1,6 @@
 .navbar {
     align-items: center;
-    background: #e9967a;
+    background: brown;
     display: flex;
    
     justify-content: space-between;
@@ -17,10 +17,7 @@
     width: 65px;
 }
 
-.navbar .mainIcon:hover {
-    background-color: #f0e68c;
-    transition: all .4s ease-in-out;
-}
+
 
 .navbar a {
     margin: 0 1rem 0 0;

@@ -12,6 +12,7 @@ function PokemonDetails({ match }) {
   const dispatch = useDispatch();
 
   const id = match.params.id;
+  console.log("id", id);
 
   useEffect(async () => {
     dispatch(getPokemonDetails(id));
