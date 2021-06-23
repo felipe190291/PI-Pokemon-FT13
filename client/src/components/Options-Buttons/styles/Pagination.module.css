@@ -8,7 +8,7 @@
 
 .navpagUl {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: row;
     list-style: none;
 }
 
@@ -23,11 +23,11 @@
 }
 
 .active {
-    background-color: #5E5499;
+    background-color: #5E5;
 }
 
 .navpagLi:hover {
-    background-color: #5E5499;
+    background-color: #5E5;
 }
 
 @media (max-width: 700px) {

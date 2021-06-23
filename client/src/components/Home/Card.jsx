@@ -57,7 +57,10 @@ function Card({ name, pokeId }) {
   //lo enfoca en cada card
 
   return (
-    <div className={`${styles.container} ${styles[type[0]]}`}>
+    <div
+      data-testid="supported-card"
+      className={`${styles.container} ${styles[type[0]]}`}
+    >
       <h3 className={styles.id}>
         {idCreated ? `#${idCreated}` : `#${pokeId}`}
       </h3>
@@ -69,7 +72,10 @@ function Card({ name, pokeId }) {
           <button className={styles.button1}>{`${type[1]}`}</button>
         </div>
       ) : (
-        <button className={styles.button2}>{`${type[0]}`}</button>
+        <button
+          data-testid="button"
+          className={styles.button2}
+        >{`${type[0]}`}</button>
       )}
     </div>
   );

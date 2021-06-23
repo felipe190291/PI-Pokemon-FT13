@@ -8,7 +8,7 @@ import image from "../../Images/International_Pokémon_logo.svg";
 import pro from "../../Images/sun-moon-team-up.mp4";
 export function Landing() {
   return (
-    <div className={styles.Landing}>
+    <div data-testid="supported-role" className={styles.Landing}>
       <div className={styles.pokemon}>
         <img width="1000" heigth="1000" src={image} alt="" />
       </div>
@@ -22,7 +22,9 @@ export function Landing() {
           autoPlay="autoplay"
         ></video>
         <Link to="/home">
-          <button className={styles.button}>Welcome</button>
+          <button data-testid="button" id="welcome" className={styles.button}>
+            Welcome
+          </button>
         </Link>
         {/* <img className="image" src={image} alt="picture" /> */}
       </div>

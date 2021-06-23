@@ -65,7 +65,7 @@ const insert = axios
     return true;
   })
   .catch((err) => console.error(err));
-Promise.all([insert]).then(() => console.log("Types loaded."));
+// Promise.all([insert]).then(() => console.log("Types loaded."));
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');

@@ -22,7 +22,7 @@ function NumberOfPages({ setPerPage, setPkmnsPerPage, perPage }) {
       onChange={handleChange}
       key="select-A"
     >
-      <option value="12">Pokemons for page</option>
+      <option value="12">Pokem for page </option>
       <option value="5">5</option>
       <option value="10">10</option>
       <option value="15">15</option>

@@ -1,8 +1,8 @@
 .navbar {
     align-items: center;
-    background: brown;
+    background: yellow;
     display: flex;
-   
+    border: 15px black solid;
     justify-content: space-between;
     align-items: center;
     height: 75px;
@@ -16,8 +16,6 @@
     height: 65px;
     width: 65px;
 }
-
-
 
 .navbar a {
     margin: 0 1rem 0 0;
@@ -93,7 +91,7 @@
     right: 0;
     width: var(--btn-width);
     font-weight: bold;
-    background: var(--color-brand);
+    background: red;
     border-radius: 0 var(--rad) var(--rad) 0;
 }
 

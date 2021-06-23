@@ -57,7 +57,7 @@ function SortButtons({ listPokemons, history }) {
   return (
     <aside className={styles.buttonContainer}>
       <select onChange={handleFilter} className={styles.byorder}>
-        <option value="-1">Select order</option>
+        <option value="-1">Select order </option>
         <option value="number">Number</option>
         <option value="nameAZ">A-Z</option>
         <option value="nameZA">Z-A</option>

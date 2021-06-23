@@ -5,11 +5,13 @@ import styles from "./styles/Pagination.module.css";
 
 function Pagination({ pokemonsPerPage, totalPkmns, paginate }) {
   const query = useQuery().get("page" || 1);
+  console.log("query", query);
 
   const pageNumber = [];
   for (let i = 1; i <= Math.ceil(totalPkmns / pokemonsPerPage); i++) {
     pageNumber.push(i);
   }
+  console.log("pageNumber", pageNumber);
 
   return (
     <nav className={styles.navpag}>

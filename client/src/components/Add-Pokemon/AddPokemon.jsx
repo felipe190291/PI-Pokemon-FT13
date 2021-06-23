@@ -119,9 +119,6 @@ function AddPokemon({ history }) {
 
   return (
     <form onSubmit={handleSubmit} className={styles.formContainer}>
-      <Link className={styles.mainIcon} to="/home">
-        ⛪
-      </Link>
       <section className={styles.inputs}>
         <h3>Properties</h3>
         <label htmlFor="name">Name</label>

@@ -36,31 +36,12 @@ function Home({ history }) {
 
   const paginate = (number) => {
     setCurrentPage(number);
-    window.scrollTo(0, 0);
   };
+  console.log("paginatehome", paginate);
 
   return (
     <div className={styles.container} id="home">
-      {/* <video
-        className={styles.video}
-        src={fondo}
-        preload="auto"
-        loop="loop"
-        muted
-        autoPlay="autoplay"
-      ></video> */}
       <section className={styles.asideContainer}>
-        <input
-          id="check"
-          type="checkbox"
-          name="check"
-          className={styles.hamburguerCheck}
-        />
-        <label htmlFor="check" className={styles.hamburguerContainer}>
-          <div className={styles.hamburguer}></div>
-          <div className={styles.hamburguer}></div>
-          <div className={styles.hamburguer}></div>
-        </label>
         <article className={styles.asideScroll}>
           <NumberOfPages
             setPerPage={setPerPage}

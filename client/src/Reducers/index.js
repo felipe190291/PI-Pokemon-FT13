@@ -5,6 +5,7 @@ import {
   GET_POKEMON_DETAILS,
   SET_PKMNS_STATS,
   FILTER_BY_TYPE,
+  FILTER_BY_ORIGIN_USER,
   LIMIT,
 } from "../actions/constantes";
 
@@ -58,6 +59,11 @@ function rootReducer(state = initialState, action) {
         allPokemons: state.allPokemons.filter((pkmn) => {
           return typeAndId.find((el) => el.id == pkmn.id); //all llega como string, pokemonstats por number
         }),
+      };
+    case FILTER_BY_ORIGIN_USER:
+      return {
+        ...state,
+        allPokemons: action.payload,
       };
 
     case GET_POKEMON_DETAILS:

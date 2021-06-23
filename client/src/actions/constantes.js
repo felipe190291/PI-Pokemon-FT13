@@ -4,6 +4,7 @@ export const GET_TYPES = "GET_TYPES";
 export const SET_PER_PAGE = "SET_PER_PAGE";
 export const SET_PKMNS_STATS = "SET_PKMNS_STATS";
 export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
+export const FILTER_BY_ORIGIN_USER = "FILTER_BY_ORIGIN_USER";
 export const SERVER_URL = "http://localhost:3001";
 export const SERVER_API = "http://localhost:3001/pokemons/";
 export const LIMIT = 100;

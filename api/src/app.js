@@ -9,10 +9,6 @@ server.use(express.json());
 
 server.name = "API";
 
-// server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
-// server.use(bodyParser.json({ limit: "50mb" }));
-//middlewares
-
 server.use(cookieParser());
 server.use(morgan("dev"));
 server.use((req, res, next) => {
@@ -26,7 +22,7 @@ server.use((req, res, next) => {
   next();
 });
 
-server.use("/",routes);
+server.use("/", routes);
 
 // Error catching endware.
 server.use((err, req, res, next) => {

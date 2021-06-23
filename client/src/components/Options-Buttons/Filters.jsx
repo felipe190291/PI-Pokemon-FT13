@@ -1,12 +1,14 @@
 import React from "react";
+
 import { useDispatch, useSelector } from "react-redux";
-import { filterByType } from "../../actions/filters/porTYPE";
+import { filterByType, filterByUsers } from "../../actions/filters/porTYPE";
 import { getAllPokemons } from "../../actions/get/porPOKEMON";
 import styles from "./styles/Filters.module.css";
 
 function Filters() {
   const types = useSelector((state) => state.types);
   const dispatch = useDispatch();
+  const allPokemons = useSelector((state) => state.allPokemons);
 
   const handleFilter = (e) => {
     const target = e.target;
@@ -18,7 +20,15 @@ function Filters() {
         dispatch(filterByType(value));
       }
     });
-    if (idButton === "clear") {
+    if (value.toString() === "created") {
+      dispatch(filterByUsers());
+      console.log("allPokemons", allPokemons);
+      if (allPokemons.length < 41) {
+        alert("No pokemons created by users yet.");
+        dispatch(getAllPokemons());
+      }
+    }
+    if (value.toString() === "reset") {
       dispatch(getAllPokemons());
       document.getElementById("selector").value = -1;
     }
@@ -26,16 +36,15 @@ function Filters() {
   return (
     <aside className={styles.buttonContainer}>
       <select className={styles.byTypes} id="selector" onChange={handleFilter}>
-        <option value="-1">Select a type</option>
+        <option value="-1">Select a type </option>
+        <option value="reset">Reset All</option>
+        <option value="created">pokeCreated</option>
         {types.map((type) => (
           <option key={`type-${type.id}`} value={type.name}>
             {type.name}
           </option>
         ))}
       </select>
-      <button onClick={handleFilter} id="clear">
-        Delete
-      </button>
     </aside>
   );
 }

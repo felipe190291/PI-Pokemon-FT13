@@ -11,7 +11,6 @@ function getallpokemons(req, res, next) {
   Promise.all([pokeApiProps, pokeMine])
     .then((response) => {
       let [pokeApiRes, pokeMineRes] = response;
-      console.log("apifirst", pokeApiRes.concat(pokeMineRes));
       return pokeApiRes.concat(pokeMineRes);
     })
     .then((pokeList) => {
@@ -27,6 +26,9 @@ function getallpokemons(req, res, next) {
               status: 404,
               message: "That pokemon does not exists.",
             });
+      }
+      if (filter === "byUsers") {
+        pokeList = pokeList.filter((el) => !Number.isInteger(Number(el.id)));
       }
 
       const limitedList = pokeList.slice(0, limit);
